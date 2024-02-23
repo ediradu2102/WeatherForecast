@@ -13,7 +13,7 @@ an image, the rounded celsius grids and the condition will be shown (all these e
 Every time the user searches for information about a city, if that city and that date are not in the database, the date, city, maximum temperature, minimum temperature,
 total precipitation, sunset time and sunrise time will be added to the database (all these extracted from www.weatherapi.com)
 
-The endpoins "/all" and "/<cityName>" where created only to have some interaction with the database. They can be acessed with Postmamn using:
+The endpoins "/all" and "/{cityName}" where created only to have some interaction with the database. They can be acessed with Postmamn using:
 
 GET: http://127.0.0.1:5000/all (to get all the data in the database) and
 
