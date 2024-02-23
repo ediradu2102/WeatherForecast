@@ -1,18 +1,26 @@
 SELECT
     p.Locatie,
+    p.first_name,
+    p.last_name,
     v.quality,
-    COUNT(v.quality) AS votes_received
+    COUNT(v.quality) AS Total_Votes
 FROM
     persons p
 inner JOIN
     Votes v ON p.ID = v.chosen_person
--- If you want to exclude invalid votes, delete the comments    
--- WHERE
- -- v.valid = 1
+-- If you want to include invalid votes, comment the next two lines. 
+WHERE
+  v.valid = 1
+-- If you want to include inactive persons, comment the next line.   
+  and status='Active'
 GROUP BY
     p.Locatie,
-    v.quality
-
+    v.chosen_person,
+    p.first_name,
+    p.last_name,
+    v.quality   
 ORDER BY
     p.Locatie,
+    p.first_name,
+    p.last_name,
     v.quality;
