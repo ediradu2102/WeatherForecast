@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #bee0ec;
+    }
+    .container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .day-forecast {
+        margin-bottom: 20px;
+    }
+    .hourly-forecast {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px;
+        white-space: nowrap;
+    }
+    .hour-container {
+        min-width: 120px;
+        min-height: 150px;
+        margin-right: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .hour-container img {
+        width: 50px;
+        height: 50px;
+    }
+    button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+    }
+    ::-webkit-scrollbar {
+    height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+    background: black;
+    }
+    .temperature{
+    font-size: 24px;
+    font-weight 700;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather forecast in {{ city_name|title }}</h1>
+        {% for day in forecast_days %}
+            <div class="day-forecast">
+                <h2>{{ day['date'] }}</h2>
+                <div class="hourly-forecast">
+                    {% for hour in day['hour'] %}
+                        <div class="hour-container">
+                            <p>{{ hour['formatted_time'] }}</p>
+                            <img src="{{ hour['condition']['icon'] | safe }}" alt="Weather Icon">
+                            <p class="temperature">{{ hour['temp_c'] }}°C</p>
+                            <p>{{ hour['condition']['text'] }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        <button onclick="window.history.back();">Back</button>
+    </div>
+</body>
+</html>
+

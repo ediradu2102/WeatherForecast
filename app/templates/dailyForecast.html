@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Weather Forecast for {{ city_name|title }}</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #bee0ec;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .forecast-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 120px;
+        }
+        .day-forecast {
+            flex: 1;
+            min-width: 220px;
+            max-width: 30%;
+            margin: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .weather-icon {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        .back-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Weather Forecast for {{ city_name|title }}</h1>
+        <div class="forecast-container">
+            {% for day in daily_forecast %}
+                <div class="day-forecast">
+                    <h2>{{ day['date'] }}</h2>
+                    <img src="{{ day['icon'] }}" alt="Weather Icon" class="weather-icon">
+                    <p>Max Temperature: {{ day['max_temp'] }}°C</p>
+                    <p>Min Temperature: {{ day['min_temp'] }}°C</p>
+                    <p>Condition: {{ day['condition'] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <button onclick="window.history.back();" class="back-button">Back</button>
+    </div>
+</body>
+</html>
