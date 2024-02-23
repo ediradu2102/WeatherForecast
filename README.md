@@ -19,7 +19,7 @@ GET: http://127.0.0.1:5000/all (to get all the data in the database) and
 
 GET: http://127.0.0.1:5000/{cityName} (to get all the data in the database about the given city)
 
-The program can also be used by accessing Postman
+The rest of the program can also be used by accessing Postman
 
 For up-to-date data: GET: http://127.0.0.1:5000/forecast/daily/<city_name>
 
