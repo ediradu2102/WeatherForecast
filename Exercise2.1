@@ -1,0 +1,18 @@
+SELECT
+    p.Locatie,
+    v.quality,
+    COUNT(v.quality) AS votes_received
+FROM
+    persons p
+inner JOIN
+    Votes v ON p.ID = v.chosen_person
+-- If you want to exclude invalid votes, delete the comments    
+-- WHERE
+ -- v.valid = 1
+GROUP BY
+    p.Locatie,
+    v.quality
+
+ORDER BY
+    p.Locatie,
+    v.quality;
